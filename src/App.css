@@ -30,3 +30,24 @@
   position: relative;
   top: -11px;
 }
+
+.unicorn {
+  position: absolute;
+  left: -120%;
+
+}
+.unicorn.moving {
+  animation-name: move;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+}
+@keyframes move {
+  from {
+    left: -120%;
+  }
+  to {
+    left: 120%;
+  }
+}

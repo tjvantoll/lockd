@@ -20,6 +20,8 @@ function App() {
   const [whyError, setWhyError] = React.useState(false);
   const [formError, setFormError] = React.useState(false);
 
+  const [showSuccess, setShowSuccess] = React.useState(false);
+
   React.useEffect(() => {
     fetch(ENDPOINT)
       .then(response => response.json())
@@ -59,6 +61,7 @@ function App() {
       why: why,
       how: how
     };
+
     fetch(ENDPOINT, {
       method: "POST",
       body: JSON.stringify(theTip),
@@ -69,12 +72,16 @@ function App() {
       const newTips = [theTip, ...tips];
       setTips(newTips);
       setDialogVisible(false);
-    })
+      document.querySelector("audio").play();
+      setShowSuccess(true);
+    });
   }
 
   return (
     <div>
-      <img className="logo" src="/logo.png" alt="Lockd app logo" />
+      <audio src="/success.wav" preload></audio>
+      <img className={showSuccess ? "unicorn moving" : "unicorn"} src="/unicorn.gif" alt="A happy unicorn" />
+      <img className="logo" src="/logo_new.png" alt="Lockd app logo" />
       <ul>
         {tips.map((tip, index) => (
           <li key={index}>
